@@ -11,42 +11,43 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main>
-        <input type="search" name="search-box" id="search-box">    
 
-        <div id="container">
-            <div class="list" id="todo-box">
-                <h2>TODO</h2>
+    <input type="search" name="search-box" placeholder="Type something...">
 
-                <div class="list-box">
-                    <div class="list-box-item">
-                        <p>Design page</p>
+    <main>    
+        <div class="list" id="todo-box">
+            <h2>TODO</h2>
 
-                        <div class="button-box">
-                            <button class="item-btn">x</button>
-                            <button class="item-btn">-&gt;</button>
-                        </div>
+            <div class="list-box">
+                <div class="list-box-item">
+                    <p>Design page</p>
+
+                    <div class="button-box">
+                        <button class="item-btn">x</button>
+                        <button class="item-btn">-&gt;</button>
                     </div>
                 </div>
-
-                <button id="plus-btn">+</button>
             </div>
 
-            <div class="list" id="done-box">
-                <h2>DONE</h2>
+            <button id="plus-btn">+</button>
+        </div>
 
-                <div class="list-box">
-                    <div class="list-box-item">
-                        <p>Design page</p>
+        <div class="list" id="done-box">
+            <h2>DONE</h2>
 
-                        <div class="button-box">
-                            <button class="item-btn">&lt;-</button>
-                            <button class="item-btn">x</button>
-                        </div>
+            <div class="list-box">
+                <div class="list-box-item">
+                    <p>Design page</p>
+
+                    <div class="button-box">
+                        <button class="item-btn">&lt;-</button>
+                        <button class="item-btn">x</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <script src="animations.js"></script>
 </body>
 </html>
