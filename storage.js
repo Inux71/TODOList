@@ -9,12 +9,45 @@ let DONEData = ["Page styling", "Add JavaScript", "Finish project"];
 function createListBoxItem(data, isDone) {
     const deleteButton = document.createElement("button");
     deleteButton.classList.add("item-btn");
+
+    deleteButton.addEventListener("click", () => {
+        if (isDone) {
+            const index = DONEData.indexOf(data);
+
+            DONEData.splice(index, 1);
+
+            showDONEData();
+        } else {
+            const index = TODOData.indexOf(data);
+
+            TODOData.splice(index, 1);
+
+            showTODOData();
+        }
+    });
     
     let buttonText = document.createTextNode("x");
     deleteButton.appendChild(buttonText);
 
     const moveButton = document.createElement("button");
     moveButton.classList.add("item-btn");
+
+    moveButton.addEventListener("click", () => {
+        if (isDone) {
+            const index = DONEData.indexOf(data);
+
+            DONEData.splice(index, 1);
+            TODOData.push(data);
+        } else {
+            const index = TODOData.indexOf(data);
+
+            TODOData.splice(index, 1);
+            DONEData.push(data);
+        }
+
+        showDONEData();
+        showTODOData();
+    });
 
     buttonText = document.createTextNode(isDone ? "<-" : "->");
     moveButton.appendChild(buttonText);
