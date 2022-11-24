@@ -99,5 +99,18 @@ function showDONEData() {
 
 
 
+searchBox.addEventListener("search", () => {
+    const result = searchBox.value;
+    
+    if (result !== "") {
+        TODOData.push(result);
+        showTODOData();
+
+        searchBox.value = "";
+    }
+});
+
+
+
 showTODOData();
 showDONEData();
