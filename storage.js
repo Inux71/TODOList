@@ -2,9 +2,9 @@ const TODOBox = document.getElementById("todo-box");
 const DONEBox = document.getElementById("done-box");
 const filterBox = document.getElementById('filter-box');
 
-let TODOData = ["Design page", "Add PHP"];
-let DONEData = ["Page styling", "Add JavaScript", "Finish project"];
-let filterData = ["staw", "statyw", "stonoga"];
+let TODOData = [];
+let DONEData = [];
+let filterData = [];
 
 
 
@@ -123,11 +123,15 @@ function createFilterList(data) {
 searchBox.addEventListener("search", () => {
     clearDOM(filterBox);
 
-    const result = searchBox.value;
+    const result = searchBox.value.toLowerCase();
     
     if (result !== "") {
         TODOData.push(result);
         showTODOData();
+
+        if (!filterData.includes(result)) {
+            filterData.push(result);
+        }
 
         searchBox.value = "";
     }
@@ -156,7 +160,6 @@ searchBox.addEventListener("keyup", (e) => {
 
 searchBox.addEventListener("focusout", () => {
     clearDOM(filterBox);
-    hideSearchBox();
     searchBox.value = "";
 });
 
