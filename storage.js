@@ -123,14 +123,14 @@ function createFilterList(data) {
 searchBox.addEventListener("search", () => {
     clearDOM(filterBox);
 
-    const result = searchBox.value.toLowerCase();
+    const result = searchBox.value;
     
     if (result !== "") {
         TODOData.push(result);
         showTODOData();
 
-        if (!filterData.includes(result)) {
-            filterData.push(result);
+        if (!filterData.includes(result.toLowerCase())) {
+            filterData.push(result.toLowerCase());
         }
 
         searchBox.value = "";
@@ -156,6 +156,10 @@ searchBox.addEventListener("keyup", (e) => {
     const filterElement = createFilterList(filterResult);
 
     filterBox.appendChild(filterElement);
+});
+
+searchBox.addEventListener("focusout", () => {
+    clearDOM(filterBox);
 });
 
 
