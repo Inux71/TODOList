@@ -3,14 +3,20 @@ const plusButton = document.getElementById("plus-btn");
 
 
 
-plusButton.addEventListener("click", () => {
+function showSearchBox() {
     searchBox.classList.remove("end-animation");
     searchBox.classList.add("start-animation");
     searchBox.style.top = 0;
-});
+}
 
-searchBox.addEventListener("search", () => {
+function hideSearchBox() {
     searchBox.classList.remove("start-animation");
     searchBox.classList.add("end-animation");
     searchBox.style.top = "-100px";
-});
+}
+
+
+
+plusButton.addEventListener("click", showSearchBox);
+
+searchBox.addEventListener("search", hideSearchBox);

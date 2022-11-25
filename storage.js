@@ -1,8 +1,10 @@
 const TODOBox = document.getElementById("todo-box");
 const DONEBox = document.getElementById("done-box");
+const filterBox = document.getElementById('filter-box');
 
-let TODOData = ["Design page", "Add PHP"];
-let DONEData = ["Page styling", "Add JavaScript", "Finish project"];
+let TODOData = [];
+let DONEData = [];
+let filterData = [];
 
 
 
@@ -96,6 +98,70 @@ function showDONEData() {
         DONEBox.appendChild(createListBoxItem(element, true));
     });
 }
+
+function createFilterList(data) {
+    const filterUl = document.createElement("ul");
+
+    data.forEach(element => {
+        const filterLi = document.createElement("li");
+        filterLi.appendChild(document.createTextNode(element));
+
+        filterLi.addEventListener("click", () => {
+            searchBox.value = element;
+
+            clearDOM(filterBox);
+        });
+
+        filterUl.appendChild(filterLi);
+    });
+
+    return filterUl;
+}
+
+
+
+searchBox.addEventListener("search", () => {
+    clearDOM(filterBox);
+
+    const result = searchBox.value.toLowerCase();
+    
+    if (result !== "") {
+        TODOData.push(result);
+        showTODOData();
+
+        if (!filterData.includes(result)) {
+            filterData.push(result);
+        }
+
+        searchBox.value = "";
+    }
+});
+
+searchBox.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+        return;
+    }
+
+    const result = searchBox.value.toLowerCase();
+    let filterResult = [];
+
+    filterData.forEach(element => {
+        if (element.startsWith(result)) {
+            filterResult.push(element);
+        }
+    });
+
+    clearDOM(filterBox);
+
+    const filterElement = createFilterList(filterResult);
+
+    filterBox.appendChild(filterElement);
+});
+
+searchBox.addEventListener("focusout", () => {
+    clearDOM(filterBox);
+    searchBox.value = "";
+});
 
 
 
