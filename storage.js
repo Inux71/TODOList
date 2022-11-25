@@ -158,11 +158,6 @@ searchBox.addEventListener("keyup", (e) => {
     filterBox.appendChild(filterElement);
 });
 
-searchBox.addEventListener("focusout", () => {
-    clearDOM(filterBox);
-    searchBox.value = "";
-});
-
 
 
 showTODOData();
