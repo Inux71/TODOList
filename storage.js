@@ -3,6 +3,7 @@ const DONEBox = document.getElementById("done-box");
 
 let TODOData = ["Design page", "Add PHP"];
 let DONEData = ["Page styling", "Add JavaScript", "Finish project"];
+let filterData = ["staw", "statyw", "stonoga"];
 
 
 
@@ -108,6 +109,19 @@ searchBox.addEventListener("search", () => {
 
         searchBox.value = "";
     }
+});
+
+searchBox.addEventListener("keyup", () => {
+    const result = searchBox.value.toLowerCase();
+    let filterResult = [];
+
+    filterData.forEach(element => {
+        if (element.startsWith(result)) {
+            filterResult.push(element);
+        }
+    });
+
+    console.log(filterResult);
 });
 
 
