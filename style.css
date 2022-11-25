@@ -46,6 +46,21 @@ input::placeholder {
     color: var(--energos);
 }
 
+#filter-box {
+    color: var(--android-green);
+    background-color: var(--white);
+    font-size: 22px;
+    width: 90%;
+    border-radius: 10px;
+    position: absolute;
+    top: 75px;
+    left: 20px;
+}
+
+li {
+    margin-left: 10px
+}
+
 .list {
     display: flex;
     flex-direction: column;

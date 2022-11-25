@@ -1,5 +1,6 @@
 const TODOBox = document.getElementById("todo-box");
 const DONEBox = document.getElementById("done-box");
+const filterBox = document.getElementById('filter-box');
 
 let TODOData = ["Design page", "Add PHP"];
 let DONEData = ["Page styling", "Add JavaScript", "Finish project"];
@@ -98,9 +99,30 @@ function showDONEData() {
     });
 }
 
+function createFilterList(data) {
+    const filterUl = document.createElement("ul");
+
+    data.forEach(element => {
+        const filterLi = document.createElement("li");
+        filterLi.appendChild(document.createTextNode(element));
+        
+        filterLi.addEventListener("click", () => {
+            searchBox.value = element;
+
+            clearDOM(filterBox);
+        });
+
+        filterUl.appendChild(filterLi);
+    });
+
+    return filterUl;
+}
+
 
 
 searchBox.addEventListener("search", () => {
+    clearDOM(filterBox);
+
     const result = searchBox.value;
     
     if (result !== "") {
@@ -111,7 +133,11 @@ searchBox.addEventListener("search", () => {
     }
 });
 
-searchBox.addEventListener("keyup", () => {
+searchBox.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+        return;
+    }
+
     const result = searchBox.value.toLowerCase();
     let filterResult = [];
 
@@ -121,7 +147,11 @@ searchBox.addEventListener("keyup", () => {
         }
     });
 
-    console.log(filterResult);
+    clearDOM(filterBox);
+
+    const filterElement = createFilterList(filterResult);
+
+    filterBox.appendChild(filterElement);
 });
 
 
