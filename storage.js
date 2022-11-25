@@ -105,7 +105,7 @@ function createFilterList(data) {
     data.forEach(element => {
         const filterLi = document.createElement("li");
         filterLi.appendChild(document.createTextNode(element));
-        
+
         filterLi.addEventListener("click", () => {
             searchBox.value = element;
 
@@ -152,6 +152,12 @@ searchBox.addEventListener("keyup", (e) => {
     const filterElement = createFilterList(filterResult);
 
     filterBox.appendChild(filterElement);
+});
+
+searchBox.addEventListener("focusout", () => {
+    clearDOM(filterBox);
+    hideSearchBox();
+    searchBox.value = "";
 });
 
 
