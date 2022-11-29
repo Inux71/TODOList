@@ -6,6 +6,21 @@ let TODOData = [];
 let DONEData = [];
 let filterData = [];
 
+GET("todo.php", (data) => {
+    TODOData = data;
+
+    showTODOData();
+});
+
+GET("done.php", (data) => {
+    DONEData = data;
+
+    showDONEData();
+});
+
+GET("filter.php", (data) => {
+    filterData = data;
+});
 
 
 function createListBoxItem(data, isDone) {
@@ -17,13 +32,13 @@ function createListBoxItem(data, isDone) {
             const index = DONEData.indexOf(data);
 
             DONEData.splice(index, 1);
-
+            POST("done.php", DONEData);
             showDONEData();
         } else {
             const index = TODOData.indexOf(data);
 
             TODOData.splice(index, 1);
-
+            POST("todo.php", TODOData);
             showTODOData();
         }
     });
@@ -40,11 +55,17 @@ function createListBoxItem(data, isDone) {
 
             DONEData.splice(index, 1);
             TODOData.push(data);
+
+            POST("todo.php", TODOData);
+            POST("done.php", DONEData);
         } else {
             const index = TODOData.indexOf(data);
 
             TODOData.splice(index, 1);
             DONEData.push(data);
+
+            POST("done.php", DONEData);
+            POST("todo.php", TODOData);
         }
 
         showDONEData();
@@ -127,10 +148,14 @@ searchBox.addEventListener("search", () => {
     
     if (result !== "") {
         TODOData.push(result);
+
+        POST("todo.php", TODOData);
         showTODOData();
 
         if (!filterData.includes(result.toLowerCase())) {
             filterData.push(result.toLowerCase());
+
+            POST("filter.php", filterData);
         }
 
         searchBox.value = "";
@@ -143,7 +168,7 @@ searchBox.addEventListener("keyup", (e) => {
     }
 
     const result = searchBox.value.toLowerCase();
-    let filterResult = [];
+    let filterResult = [];  
 
     filterData.forEach(element => {
         if (element.startsWith(result)) {
