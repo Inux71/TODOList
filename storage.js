@@ -6,6 +6,21 @@ let TODOData = [];
 let DONEData = [];
 let filterData = [];
 
+GET("todo.php", (data) => {
+    TODOData = data;
+
+    showTODOData();
+});
+
+GET("done.php", (data) => {
+    DONEData = data;
+
+    showDONEData();
+});
+
+GET("filter.php", (data) => {
+    filterData = data;
+});
 
 
 function createListBoxItem(data, isDone) {
@@ -153,7 +168,7 @@ searchBox.addEventListener("keyup", (e) => {
     }
 
     const result = searchBox.value.toLowerCase();
-    let filterResult = [];
+    let filterResult = [];  
 
     filterData.forEach(element => {
         if (element.startsWith(result)) {
